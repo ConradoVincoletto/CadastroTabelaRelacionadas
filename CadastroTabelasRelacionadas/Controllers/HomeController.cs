@@ -23,9 +23,6 @@ namespace CadastroTabelasRelacionadas.Controllers
             return View();
         }
 
-        public IActionResult NovaTela()
-        {
-            return View();
-        }
+        
     }
 }
