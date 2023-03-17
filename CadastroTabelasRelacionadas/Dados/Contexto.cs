@@ -1,7 +1,8 @@
-﻿using CadastroTabelasRelacionadas.Models;
+﻿using CadastroTabelasRelacionadas.Entidades;
+using CadastroTabelasRelacionadas.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CadastroTabelasRelacionadas.Contexto
+namespace CadastroTabelasRelacionadas.Dados
 {
     public class Contexto : DbContext
     {
@@ -9,7 +10,7 @@ namespace CadastroTabelasRelacionadas.Contexto
         public Contexto(DbContextOptions<Contexto> options) : base(options)
         {
         }
-        public DbSet<Produto> produtos { get; set; }
+        public DbSet<Usuarios> usuarios { get; set; }
 
     }
 }
