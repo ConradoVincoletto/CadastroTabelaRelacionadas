@@ -7,7 +7,8 @@ namespace CadastroTabelasRelacionadas.Controllers
     {
         public static List<Produto> listaProdutos = new List<Produto>();
         public IActionResult Index()
-        {
+        {            
+
             return View(listaProdutos);
         }
 
