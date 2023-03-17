@@ -1,4 +1,5 @@
 ﻿using CadastroTabelasRelacionadas.Dados;
+using CadastroTabelasRelacionadas.Entidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace CadastroTabelasRelacionadas.Controllers
         // GET: UsuariosControlle
         public ActionResult Index()
         {
-            return View();
+            return View(db.usuarios.ToList());
         }
 
         // GET: UsuariosControlle/Details/5
@@ -35,10 +36,12 @@ namespace CadastroTabelasRelacionadas.Controllers
         // POST: UsuariosControlle/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Usuarios collection)
         {
             try
             {
+                db.usuarios.Add(collection);
+                db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch

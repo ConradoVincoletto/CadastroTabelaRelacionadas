@@ -1,6 +1,13 @@
+using CadastroTabelasRelacionadas.Dados;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var connectionStringMysql = builder.Configuration.GetConnectionString("ConnectionMysql");
+builder.Services.AddDbContext<Contexto>(options => options.UseMySql(connectionStringMysql, ServerVersion.Parse("8.0.31-mysql")));
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
