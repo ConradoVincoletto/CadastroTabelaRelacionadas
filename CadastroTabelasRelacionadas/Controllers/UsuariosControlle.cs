@@ -53,16 +53,18 @@ namespace CadastroTabelasRelacionadas.Controllers
         // GET: UsuariosControlle/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(db.usuarios.Where(x => x.Id == id).FirstOrDefault());
         }
 
         // POST: UsuariosControlle/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Usuarios collection)
         {
             try
             {
+                db.usuarios.Update(collection);
+                db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -74,22 +76,11 @@ namespace CadastroTabelasRelacionadas.Controllers
         // GET: UsuariosControlle/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            db.usuarios.Remove(db.usuarios.Where(a => a.Id == id).FirstOrDefault());    
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        // POST: UsuariosControlle/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }
