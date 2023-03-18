@@ -4,11 +4,26 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="card">
+    <div class="card-header">Pesquisar Usuários</div>
+    <div class="card-body">
+        <form action="/UsuariosControlle/Index" method="get">
+            <div class="row">
+                <div class="col-4">
+                    <a href="UsuarioControlle/Create" class="btn btn-success">
+                        Novo Usuário
+                    </a>
+                </div>
+                <div class="col-4">
+                    <input type="text" name="query", class="form-control" placeholder="Digite sua busca"/>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-primary" type="submit">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
