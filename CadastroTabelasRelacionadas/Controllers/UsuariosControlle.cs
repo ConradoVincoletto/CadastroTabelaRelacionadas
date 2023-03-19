@@ -16,9 +16,16 @@ namespace CadastroTabelasRelacionadas.Controllers
 
 
         // GET: UsuariosControlle
-        public ActionResult Index()
+        public ActionResult Index(string query)
         {
-            return View(db.usuarios.ToList());
+            if (string.IsNullOrEmpty(query))
+            {
+                return View(db.usuarios.ToList());
+            }
+            else
+            {
+                return View(db.usuarios.Where(a => a.Login.Contains(query) || a.Nome.Contains(query)));
+            }
         }
 
         // GET: UsuariosControlle/Details/5
