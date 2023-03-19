@@ -16,7 +16,7 @@ namespace CadastroTabelasRelacionadas.Controllers
 
 
         // GET: UsuariosControlle
-        public ActionResult Index(string query)
+        public ActionResult Index(string query, string tipoPesquisa)
         {
             if (string.IsNullOrEmpty(query))
             {

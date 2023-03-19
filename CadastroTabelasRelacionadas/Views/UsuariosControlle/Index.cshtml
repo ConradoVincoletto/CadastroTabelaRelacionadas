@@ -9,13 +9,20 @@
     <div class="card-body">
         <form action="/UsuariosControlle/Index" method="get">
             <div class="row">
-                <div class="col-4">
+                <div class="col-2">
                     <a href="/UsuariosControlle/Create" class="btn btn-success">
                         Novo Usuário
                     </a>
                 </div>
+                <div class="col-2">
+                    <select name="tipoPesquisa" class="form-control">
+                        <option value="Todos">Todos</option>
+                        <option value="PorNome">Por nome</option>
+                        <option value="PorLogin">Por login</option>
+                    </select>
+                </div>
                 <div class="col-4">
-                    <input type="text" name="query", class="form-control" placeholder="Digite sua busca"/>
+                    <input type="text" name="query" , class="form-control" placeholder="Digite sua busca" />
                 </div>
                 <div class="col-4">
                     <button class="btn btn-primary" type="submit">Pesquisar</button>
@@ -40,23 +47,24 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Login)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Senha)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Login)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Senha)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
