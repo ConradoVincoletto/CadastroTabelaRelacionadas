@@ -22,9 +22,17 @@ namespace CadastroTabelasRelacionadas.Controllers
             {
                 return View(db.usuarios.ToList());
             }
-            else
+            else if(tipoPesquisa == "Todos")
             {
                 return View(db.usuarios.Where(a => a.Login.Contains(query) || a.Nome.Contains(query)));
+            }
+            else if (tipoPesquisa == "PorNome")
+            {
+                return View(db.usuarios.Where(a => a.Nome.Contains(query)));
+            }
+            else if (tipoPesquisa == "PorLogin")
+            {
+                return View(db.usuarios.Where(a => a.Login.Contains(query)));
             }
         }
 
