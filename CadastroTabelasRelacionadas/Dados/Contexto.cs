@@ -12,5 +12,7 @@ namespace CadastroTabelasRelacionadas.Dados
         }
         public DbSet<Usuarios> usuarios { get; set; }
 
+        public DbSet<Produto> produtos { get; set; }
+
     }
 }

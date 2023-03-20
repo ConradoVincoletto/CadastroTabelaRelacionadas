@@ -34,6 +34,11 @@ namespace CadastroTabelasRelacionadas.Controllers
             {
                 return View(db.usuarios.Where(a => a.Login.Contains(query)));
             }
+            else
+            {
+                return View(db.usuarios.ToList());
+            }
+           
         }
 
         // GET: UsuariosControlle/Details/5

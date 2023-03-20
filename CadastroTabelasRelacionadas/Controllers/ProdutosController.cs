@@ -1,15 +1,32 @@
-﻿using CadastroTabelasRelacionadas.Models;
+﻿using CadastroTabelasRelacionadas.Dados;
+using CadastroTabelasRelacionadas.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CadastroTabelasRelacionadas.Controllers
 {
     public class ProdutosController : Controller
     {
-        public static List<Produto> listaProdutos = new List<Produto>();
-        public IActionResult Index()
-        {            
+        private readonly Contexto db;
 
-            return View(listaProdutos);
+        public ProdutosController(Contexto contexto)
+        {
+            db = contexto;
+        }
+        public IActionResult Index(string query, string tipoPesquisa)
+        {
+
+            if (string.IsNullOrEmpty(query))
+            {
+                return View(db.produtos.ToList());
+            }
+            else if (tipoPesquisa == "Todos")
+            {
+                return View(db.produtos.Where(a => a.Descricao.Contains(query)));
+            }            
+            else
+            {
+                return View(db.usuarios.ToList());
+            }
         }
 
         public IActionResult Create()
@@ -21,8 +38,8 @@ namespace CadastroTabelasRelacionadas.Controllers
 
         public IActionResult Create(Produto objeto)
         {
-            listaProdutos.Add(objeto);
-            return RedirectToAction("Index"); 
+            
+            return RedirectToAction(); 
         }
     }
 }
