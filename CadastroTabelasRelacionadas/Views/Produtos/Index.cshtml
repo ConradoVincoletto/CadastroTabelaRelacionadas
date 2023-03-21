@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CadastroTabelasRelacionadas.Models.ProdutoModel>
+﻿@model IEnumerable<CadastroTabelasRelacionadas.Entidades.Produto>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,16 +7,16 @@
 <div class="card">
     <div class="card-header">Pesquisar Produtos</div>
     <div class="card-body">
-        <form action="/ProdutosCOntroller/Index" method="get">
+        <form action="/Produtos/Index" method="get">
             <div class="row">
                 <div class="col-2">
-                    <a href="/ProdutoController/Create" class="btn btn-success">
+                    <a href="/Produtos/Create" class="btn btn-success">
                         Novo Produto
                     </a>
                 </div>
                 <div class="col-2">
                     <select name="tipoPesquisa" class="form-control">
-                        <option value="Todos">Todos</option>                        
+                        <option value="Todos">Todos</option>
                     </select>
                 </div>
                 <div class="col-4">
@@ -33,29 +33,30 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Codigo)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Descricao)
-            </th>            
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Codigo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>            
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

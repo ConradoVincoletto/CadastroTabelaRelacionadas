@@ -1,5 +1,6 @@
 ﻿using CadastroTabelasRelacionadas.Dados;
 using CadastroTabelasRelacionadas.Entidades;
+using CadastroTabelasRelacionadas.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CadastroTabelasRelacionadas.Controllers
@@ -31,16 +32,18 @@ namespace CadastroTabelasRelacionadas.Controllers
 
         public IActionResult Create()
         {
+            ProdutoModel produtoModel = new ProdutoModel();
+            
             return View();
         }
 
         [HttpPost]
 
-        public IActionResult Create(Produto collection)
+        public IActionResult Create(Produto objeto)
         {
             try
             {
-                db.produtos.Add(collection);
+                db.produtos.Add(objeto);
                 db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
@@ -50,19 +53,19 @@ namespace CadastroTabelasRelacionadas.Controllers
             }
              
         }
-        public ActionResult Edit(int codigo)
+        public ActionResult Edit(int id)
         {
-            return View(db.produtos.Where(x => x.Codigo == codigo).FirstOrDefault());
+            return View(db.produtos.Where(x => x.Id == id).FirstOrDefault());
         }
 
         // POST: ProdutosController/Edit/5
         [HttpPost]
         
-        public ActionResult Edit(int codigo, Produto collection)
+        public ActionResult Edit(int id, Produto objeto)
         {
             try
             {
-                db.produtos.Update(collection);
+                db.produtos.Update(objeto);
                 db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
@@ -72,9 +75,9 @@ namespace CadastroTabelasRelacionadas.Controllers
             }
         }
         // GET: UsuariosControlle/Delete/5
-        public ActionResult Delete(int codigo)
+        public ActionResult Delete(int id)
         {
-            db.produtos.Remove(db.produtos.Where(a => a.Codigo == codigo).FirstOrDefault());
+            db.produtos.Remove(db.produtos.Where(a => a.Id == id).FirstOrDefault());
             db.SaveChanges();
             return RedirectToAction("Index");
         }
