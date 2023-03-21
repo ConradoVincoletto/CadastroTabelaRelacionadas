@@ -36,10 +36,47 @@ namespace CadastroTabelasRelacionadas.Controllers
 
         [HttpPost]
 
-        public IActionResult Create(Produto objeto)
+        public IActionResult Create(Produto collection)
         {
-            
-            return RedirectToAction(); 
+            try
+            {
+                db.produtos.Add(collection);
+                db.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
+             
+        }
+        public ActionResult Edit(int codigo)
+        {
+            return View(db.produtos.Where(x => x.Codigo == codigo).FirstOrDefault());
+        }
+
+        // POST: ProdutosController/Edit/5
+        [HttpPost]
+        
+        public ActionResult Edit(int codigo, Produto collection)
+        {
+            try
+            {
+                db.produtos.Update(collection);
+                db.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        // GET: UsuariosControlle/Delete/5
+        public ActionResult Delete(int codigo)
+        {
+            db.produtos.Remove(db.produtos.Where(a => a.Codigo == codigo).FirstOrDefault());
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
