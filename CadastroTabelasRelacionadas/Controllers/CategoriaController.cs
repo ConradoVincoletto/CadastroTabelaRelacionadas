@@ -14,16 +14,23 @@ namespace CadastroTabelasRelacionadas.Controllers
         }
 
         // GET: CategoriaController
-        public ActionResult Index()
+        public ActionResult Index(string query, string tipoPesquisa)
         {
-            return View();
+            if (string.IsNullOrEmpty(query))
+            {
+                return View(db.categorias.ToList());
+            }
+            else if (tipoPesquisa == "Todos")
+            {
+                return View(db.categorias.Where(a => a.Descricao.Contains(query)));
+            }
+            else
+            {
+                return View(db.categorias.ToList());
+            }
         }
 
-        // GET: CategoriaController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        
 
         // GET: CategoriaController/Create
         public ActionResult Create()

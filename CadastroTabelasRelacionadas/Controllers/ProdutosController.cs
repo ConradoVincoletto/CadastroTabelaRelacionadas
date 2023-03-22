@@ -26,7 +26,7 @@ namespace CadastroTabelasRelacionadas.Controllers
             }            
             else
             {
-                return View(db.usuarios.ToList());
+                return View(db.produtos.ToList());
             }
         }
 
