@@ -92,13 +92,18 @@ namespace CadastroTabelasRelacionadas.Controllers
                 return View();
             }
         }
+        public ActionResult Delete(int id)
+        {
+            return View(db.usuarios.Where(a => a.Id == id).FirstOrDefault());
+        }
 
         // GET: UsuariosControlle/Delete/5
-        public ActionResult Delete(int id)
+        [HttpPost]
+        public ActionResult Delete(int id, Usuarios collection)
         {
             db.usuarios.Remove(db.usuarios.Where(a => a.Id == id).FirstOrDefault());    
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         
