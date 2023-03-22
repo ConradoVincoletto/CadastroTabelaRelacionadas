@@ -59,8 +59,7 @@ namespace CadastroTabelasRelacionadas.Controllers
         }
 
         // POST: ProdutosController/Edit/5
-        [HttpPost]
-        
+        [HttpPost]        
         public ActionResult Edit(int id, Produto objeto)
         {
             try

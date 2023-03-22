@@ -1,6 +1,8 @@
 ﻿using CadastroTabelasRelacionadas.Dados;
+using CadastroTabelasRelacionadas.Entidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace CadastroTabelasRelacionadas.Controllers
 {
@@ -40,16 +42,18 @@ namespace CadastroTabelasRelacionadas.Controllers
 
         // POST: CategoriaController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        
+        public ActionResult Create(Categoria objeto)
         {
             try
             {
+                db.categorias.Add(objeto);
+                db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                return NotFound(e.Message);
             }
         }
 
@@ -60,8 +64,7 @@ namespace CadastroTabelasRelacionadas.Controllers
         }
 
         // POST: CategoriaController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public ActionResult Edit(int id, IFormCollection collection)
         {
             try
