@@ -14,5 +14,7 @@ namespace CadastroTabelasRelacionadas.Dados
 
         public DbSet<Produto> produtos { get; set; }
 
+        public DbSet<Categoria> categorias { get; set; }
+
     }
 }
