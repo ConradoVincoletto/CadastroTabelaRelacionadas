@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CadastroTabelasRelacionadas.Entidades.Categoria>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card">
+    <div class="card-header">Pesquisar Categoria</div>
+    <div class="card-body">
+        <form action="/Categoria/Index" method="get">
+            <div class="row">
+                <div class="col-2">
+                    <a href="/Categoria/Create" class="btn btn-success">
+                        Nova Categoria
+                    </a>
+                </div>
+                <div class="col-2">
+                    <select name="tipoPesquisa" class="form-control">
+                        <option value="Todos">Todos</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <input type="text" name="query" , class="form-control" placeholder="Digite sua busca" />
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-primary" type="submit">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
