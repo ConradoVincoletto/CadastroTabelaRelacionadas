@@ -60,41 +60,44 @@ namespace CadastroTabelasRelacionadas.Controllers
         // GET: CategoriaController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(db.categorias.Where(a => a.Id == id).FirstOrDefault());
         }
 
         // POST: CategoriaController/Edit/5
         [HttpPost]        
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Categoria objeto)
         {
             try
             {
+                db.categorias.Update(objeto);
+                db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                return NotFound(e.Message);
             }
         }
 
         // GET: CategoriaController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(db.categorias.Where(a => a.Id == id).FirstOrDefault());
         }
 
         // POST: CategoriaController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [HttpPost]        
+        public ActionResult Delete(int id, Categoria objeto)
         {
             try
             {
+                db.categorias.Remove(db.categorias.Where(a => a.Id == id).FirstOrDefault());
+                db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                return NotFound(e.Message);
             }
         }
     }

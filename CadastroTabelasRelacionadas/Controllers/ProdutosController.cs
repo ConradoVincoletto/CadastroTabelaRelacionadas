@@ -68,17 +68,30 @@ namespace CadastroTabelasRelacionadas.Controllers
                 db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                return NotFound(e.Message);
             }
         }
-        // GET: UsuariosControlle/Delete/5
+
         public ActionResult Delete(int id)
         {
-            db.produtos.Remove(db.produtos.Where(a => a.Id == id).FirstOrDefault());
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View(db.produtos.Where(a => a.Id == id).FirstOrDefault());
+        }
+        // GET: UsuariosControlle/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, Produto objeto)
+        {
+            try
+            {
+                db.produtos.Remove(db.produtos.Where(a => a.Id == id).FirstOrDefault());
+                db.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch(Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
     }
 }
