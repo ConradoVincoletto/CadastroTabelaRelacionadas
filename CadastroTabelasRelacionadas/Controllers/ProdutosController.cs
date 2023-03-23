@@ -2,6 +2,7 @@
 using CadastroTabelasRelacionadas.Entidades;
 using CadastroTabelasRelacionadas.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CadastroTabelasRelacionadas.Controllers
 {
@@ -18,15 +19,15 @@ namespace CadastroTabelasRelacionadas.Controllers
 
             if (string.IsNullOrEmpty(query))
             {
-                return View(db.produtos.ToList());
+                return View(db.produtos.Include(a => a.categoria).ToList());
             }
             else if (tipoPesquisa == "Todos")
             {
-                return View(db.produtos.Where(a => a.Descricao.Contains(query)));
+                return View(db.produtos.Where(a => a.Descricao.Contains(query)).Include(a => a.categoria));
             }            
             else
             {
-                return View(db.produtos.ToList());
+                return View(db.produtos.Include(a => a.categoria).ToList());
             }
         }
 

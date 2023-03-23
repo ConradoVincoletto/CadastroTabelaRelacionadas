@@ -38,18 +38,24 @@
             <th>
                 @Html.DisplayNameFor(model => model.Descricao)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.categoria)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr>                
                 <td>
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @item.categoria.Descricao
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>                     
