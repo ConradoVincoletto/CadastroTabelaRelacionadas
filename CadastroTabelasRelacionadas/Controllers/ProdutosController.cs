@@ -32,9 +32,10 @@ namespace CadastroTabelasRelacionadas.Controllers
 
         public IActionResult Create()
         {
-            ProdutoModel produtoModel = new ProdutoModel();
+            ProdutoModel model = new ProdutoModel();
+            model.ListaCategorias = db.categorias.ToList();
             
-            return View();
+            return View(model);
         }
 
         [HttpPost]
@@ -43,6 +44,7 @@ namespace CadastroTabelasRelacionadas.Controllers
         {
             try
             {
+                
                 db.produtos.Add(objeto);
                 db.SaveChanges();
                 return RedirectToAction(nameof(Index));

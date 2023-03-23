@@ -39,16 +39,16 @@ namespace CadastroTabelasRelacionadas.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("categoriaId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("categoriaId");
+                    b.HasIndex("CategoriaId");
 
                     b.ToTable("produtos");
                 });
@@ -80,7 +80,7 @@ namespace CadastroTabelasRelacionadas.Migrations
                 {
                     b.HasOne("CadastroTabelasRelacionadas.Entidades.Categoria", "categoria")
                         .WithMany()
-                        .HasForeignKey("categoriaId")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

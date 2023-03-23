@@ -5,27 +5,27 @@
 namespace CadastroTabelasRelacionadas.Migrations
 {
     /// <inheritdoc />
-    public partial class Relacao : Migration
+    public partial class inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "categoriaId",
+                name: "CategoriaId",
                 table: "produtos",
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.CreateIndex(
-                name: "IX_produtos_categoriaId",
+                name: "IX_produtos_CategoriaId",
                 table: "produtos",
-                column: "categoriaId");
+                column: "CategoriaId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_produtos_categorias_categoriaId",
+                name: "FK_produtos_categorias_CategoriaId",
                 table: "produtos",
-                column: "categoriaId",
+                column: "CategoriaId",
                 principalTable: "categorias",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
@@ -35,15 +35,15 @@ namespace CadastroTabelasRelacionadas.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_produtos_categorias_categoriaId",
+                name: "FK_produtos_categorias_CategoriaId",
                 table: "produtos");
 
             migrationBuilder.DropIndex(
-                name: "IX_produtos_categoriaId",
+                name: "IX_produtos_CategoriaId",
                 table: "produtos");
 
             migrationBuilder.DropColumn(
-                name: "categoriaId",
+                name: "CategoriaId",
                 table: "produtos");
         }
     }

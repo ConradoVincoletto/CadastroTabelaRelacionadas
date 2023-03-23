@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CadastroTabelasRelacionadas.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20230323185045_Relacao")]
-    partial class Relacao
+    [Migration("20230323195814_inicial")]
+    partial class inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,16 +42,16 @@ namespace CadastroTabelasRelacionadas.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("categoriaId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("categoriaId");
+                    b.HasIndex("CategoriaId");
 
                     b.ToTable("produtos");
                 });
@@ -83,7 +83,7 @@ namespace CadastroTabelasRelacionadas.Migrations
                 {
                     b.HasOne("CadastroTabelasRelacionadas.Entidades.Categoria", "categoria")
                         .WithMany()
-                        .HasForeignKey("categoriaId")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

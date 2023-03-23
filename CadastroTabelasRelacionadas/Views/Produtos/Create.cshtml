@@ -1,4 +1,4 @@
-﻿@model CadastroTabelasRelacionadas.Entidades.Produto
+﻿@model CadastroTabelasRelacionadas.Models.ProdutoModel
 
 @{
     ViewData["Title"] = "Create";
@@ -11,17 +11,19 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
             <div class="form-group">
                 <label asp-for="Descricao" class="control-label"></label>
                 <input asp-for="Descricao" class="form-control" />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
-            </div>            
+            </div>    
+            <label>Categoria</label>
+            <select name="CategoriaId" class="form-control">
+                @foreach(var item in Model.ListaCategorias)
+                {
+                    <option value="@item.Id">@item.Descricao</option>
+                }
+            </select>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
