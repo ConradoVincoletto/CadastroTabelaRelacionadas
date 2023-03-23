@@ -1,4 +1,5 @@
 ﻿using MessagePack;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CadastroTabelasRelacionadas.Entidades
 {
@@ -6,9 +7,11 @@ namespace CadastroTabelasRelacionadas.Entidades
     {
         
         public int Id { get; set; }
-        public string Descricao { get; set; }       
+        public string Descricao { get; set; }        
+        public Categoria categoria { get; set; }
 
-       
+
+
 
 
     }
