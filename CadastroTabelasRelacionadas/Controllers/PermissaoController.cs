@@ -1,4 +1,5 @@
 ﻿using CadastroTabelasRelacionadas.Dados;
+using CadastroTabelasRelacionadas.Entidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,15 +40,17 @@ namespace CadastroTabelasRelacionadas.Controllers
 
         // POST: PermissaoController/Create
         [HttpPost]        
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Permissao objeto)
         {
             try
             {
+                db.permissoes.Add(objeto);
+                db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                return NotFound(e.Message);
             }
         }
 
@@ -58,8 +61,7 @@ namespace CadastroTabelasRelacionadas.Controllers
         }
 
         // POST: PermissaoController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public ActionResult Edit(int id, IFormCollection collection)
         {
             try
