@@ -15,17 +15,22 @@ namespace CadastroTabelasRelacionadas.Controllers
 
 
         // GET: PermissaoController
-        public ActionResult Index()
+        public ActionResult Index(string query, string tipoPesquisa)
         {
-            return View();
+            if (string.IsNullOrEmpty(query))
+            {
+                return View(db.permissoes.ToList());
+            }
+            else if (tipoPesquisa == "Todos")
+            {
+                return View(db.permissoes.Where(a => a.Descricao.Contains(query)));
+            }
+            else
+            {
+                return View(db.permissoes.ToList());
+            }
         }
-
-        // GET: PermissaoController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
+                
         // GET: PermissaoController/Create
         public ActionResult Create()
         {
@@ -33,8 +38,7 @@ namespace CadastroTabelasRelacionadas.Controllers
         }
 
         // POST: PermissaoController/Create
-        [HttpPost]
-        
+        [HttpPost]        
         public ActionResult Create(IFormCollection collection)
         {
             try
