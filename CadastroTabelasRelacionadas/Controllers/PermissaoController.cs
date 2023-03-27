@@ -79,7 +79,7 @@ namespace CadastroTabelasRelacionadas.Controllers
         // GET: PermissaoController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(db.permissoes.Where(a => a.Id == id).FirstOrDefault());
         }
 
         // POST: PermissaoController/Delete/5
@@ -88,11 +88,13 @@ namespace CadastroTabelasRelacionadas.Controllers
         {
             try
             {
+                db.permissoes.Remove(db.permissoes.Where(a => a.Id == id).FirstOrDefault());
+                db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch( Exception e)
             {
-                return View();
+                return NotFound(e.Message);
             }
         }
     }
