@@ -57,20 +57,22 @@ namespace CadastroTabelasRelacionadas.Controllers
         // GET: PermissaoController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(db.permissoes.Where(a => a.Id == id). FirstOrDefault());
         }
 
         // POST: PermissaoController/Edit/5
         [HttpPost]        
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Permissao objeto)
         {
             try
             {
+                db.permissoes.Update(objeto);
+                db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                return NotFound(e.Message);
             }
         }
 
@@ -81,8 +83,7 @@ namespace CadastroTabelasRelacionadas.Controllers
         }
 
         // POST: PermissaoController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try
