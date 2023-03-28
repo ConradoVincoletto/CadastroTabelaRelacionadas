@@ -16,7 +16,9 @@ namespace CadastroTabelasRelacionadas.Dados
 
         public DbSet<Categoria> categorias { get; set; }
 
-        public DbSet<Permissao> permissoes { get; set; }    
+        public DbSet<Permissao> permissoes { get; set; }   
+        
+        public DbSet<Usuarios_Permissoes> usuario_permissao { get; set; }
 
 
 
