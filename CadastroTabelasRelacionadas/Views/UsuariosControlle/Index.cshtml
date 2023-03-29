@@ -60,6 +60,7 @@
                     @Html.DisplayFor(modelItem => item.Senha)
                 </td>
                 <td>
+                    <a href="/Usuarios/ListaPermissoes/@item.Id">Permissões dos Usuários</a>
                     <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>                     
                     <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
                 </td>

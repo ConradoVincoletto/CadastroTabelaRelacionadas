@@ -1,7 +1,9 @@
 ﻿using CadastroTabelasRelacionadas.Dados;
 using CadastroTabelasRelacionadas.Entidades;
+using CadastroTabelasRelacionadas.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CadastroTabelasRelacionadas.Controllers
 {
@@ -14,7 +16,15 @@ namespace CadastroTabelasRelacionadas.Controllers
             db = contexto;
         }
 
+        //Lista de permissões
 
+        public IActionResult ListaPermissoes(int id)
+        {
+            ListaPermissoesModel model = new ListaPermissoesModel();
+            model.TodasPermissoes = db.permissoes.ToList();
+            model.Permissoesusuario = db.usuario_permissao.Include(a => a.permissao).ToList();
+            return View();
+        }
         // GET: UsuariosControlle
         public ActionResult Index(string query, string tipoPesquisa)
         {
