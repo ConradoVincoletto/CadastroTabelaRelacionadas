@@ -22,8 +22,8 @@ namespace CadastroTabelasRelacionadas.Controllers
         {
             ListaPermissoesModel model = new ListaPermissoesModel();
             model.TodasPermissoes = db.permissoes.ToList();
-            model.Permissoesusuario = db.usuario_permissao.Include(a => a.permissao).ToList();
-            return View();
+            model.Permissoesusuario = db.usuario_permissao.Where(a => a.UsuarioId == id).Include(a => a.permissao).ToList();
+            return View(model);
         }
         // GET: UsuariosControlle
         public ActionResult Index(string query, string tipoPesquisa)

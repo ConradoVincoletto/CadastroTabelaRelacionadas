@@ -1,0 +1,26 @@
+﻿@model CadastroTabelasRelacionadas.Models.ListaPermissoesModel
+
+<div class="row">
+    <div class="col-6">
+        <ul class="list-group">
+            @foreach(var item in Model.Permissoesusuario)
+            {
+                <li class="list-group-item"> 
+                    @item.permissao.Descricao
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="col-6">
+        <ul class="list-group">
+            @foreach (var item in Model.TodasPermissoes)
+            {
+                <li class="list-group-item">
+                    @item.Descricao
+                </li>
+            }
+        </ul>
+    </div>
+
+</div>
