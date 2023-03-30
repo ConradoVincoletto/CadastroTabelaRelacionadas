@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-6">
         <ul class="list-group">
-            @foreach(var item in Model.Permissoesusuario)
+            @foreach(var item in Model.PermissoesUsuario)
             {
                 <li class="list-group-item"> 
                     @item.permissao.Descricao
@@ -17,6 +17,7 @@
             @foreach (var item in Model.TodasPermissoes)
             {
                 <li class="list-group-item">
+                    <a href="/UsuarioPermissoes/AdicionarPermissao/@Model.UsuarioId/@item.Id" class="btn btn-success"> + </a>
                     @item.Descricao
                 </li>
             }

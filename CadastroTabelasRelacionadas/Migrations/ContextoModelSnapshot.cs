@@ -107,14 +107,9 @@ namespace CadastroTabelasRelacionadas.Migrations
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
-                    b.Property<int>("usuariosId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PermissaoId");
-
-                    b.HasIndex("usuariosId");
 
                     b.ToTable("usuario_permissao");
                 });
@@ -138,15 +133,7 @@ namespace CadastroTabelasRelacionadas.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CadastroTabelasRelacionadas.Entidades.Usuarios", "usuarios")
-                        .WithMany()
-                        .HasForeignKey("usuariosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("permissao");
-
-                    b.Navigation("usuarios");
                 });
 #pragma warning restore 612, 618
         }
