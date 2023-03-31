@@ -1,5 +1,6 @@
 using CadastroTabelasRelacionadas.Dados;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionStringMysql = builder.Configuration.GetConnectionString("ConnectionMysql");
 builder.Services.AddDbContext<Contexto>(options => options.UseMySql(connectionStringMysql, ServerVersion.Parse("8.0.31-mysql")));
+
+builder.Services.AddAuthentication("CookieAuthentication").AddCookie("CookieAuthentication", options =>
+{
+    options.LoginPath = "/Login/Entrar";
+    options.AccessDeniedPath = "/Login/Ops";
+});
 
 builder.Services.AddControllersWithViews();
 
@@ -25,6 +32,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

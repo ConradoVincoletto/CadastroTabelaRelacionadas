@@ -1,12 +1,14 @@
 ﻿using CadastroTabelasRelacionadas.Dados;
 using CadastroTabelasRelacionadas.Entidades;
 using CadastroTabelasRelacionadas.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CadastroTabelasRelacionadas.Controllers
 {
+    [Authorize(AuthenticationSchemes = "CookieAuthentication")]
     public class UsuariosControlle : Controller
     {
         private readonly Contexto db;
