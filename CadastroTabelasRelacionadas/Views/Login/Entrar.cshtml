@@ -1,5 +1,12 @@
 ﻿<h1>Faça o seu Login</h1>
 
+@if(TempData["erro"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["erro"]
+    </div>
+}
+
  <form action="=/Login/Entrar" method="post">
      <label>Usuário</label>
      <input type="text" name="login"/>

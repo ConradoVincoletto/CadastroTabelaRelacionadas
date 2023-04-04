@@ -2,6 +2,7 @@
 using CadastroTabelasRelacionadas.Entidades;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using System.Security.Claims;
 
 namespace CadastroTabelasRelacionadas.Controllers
@@ -25,10 +26,24 @@ namespace CadastroTabelasRelacionadas.Controllers
         {
             Usuarios usuarioLogado = db.usuarios.Where(a => a.Login == login && a.Senha == senha).FirstOrDefault();
 
+            if (usuarioLogado == null)
+            {
+                TempData["erro"] = "Usuário e senha inválidos";
+                return View();
+            }
+
             var claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Name, usuarioLogado.Nome));
             claims.Add(new Claim(ClaimTypes.Sid, usuarioLogado.Id.ToString()));
+
+            var userIdendity = new ClaimsIdentity(claims, "Acesso");
+            
+            ClaimsPrincipal principal = new ClaimsPrincipal(userIdendity);
+            await HttpContext.SignInAsync("CookieAuthentication", principal, new AuthenticationProperties());
+
             return Redirect("/");
+
+
         }
 
         public async Task<IActionResult> Logoff()
