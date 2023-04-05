@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CadastroTabelasRelacionadas.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20230323195814_inicial")]
+    [Migration("20230404210314_inicial")]
     partial class inicial
     {
         /// <inheritdoc />
@@ -34,6 +34,25 @@ namespace CadastroTabelasRelacionadas.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("categorias");
+                });
+
+            modelBuilder.Entity("CadastroTabelasRelacionadas.Entidades.Permissao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("permissoes");
                 });
 
             modelBuilder.Entity("CadastroTabelasRelacionadas.Entidades.Produto", b =>
@@ -79,6 +98,25 @@ namespace CadastroTabelasRelacionadas.Migrations
                     b.ToTable("usuarios");
                 });
 
+            modelBuilder.Entity("CadastroTabelasRelacionadas.Entidades.Usuarios_Permissoes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("PermissaoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissaoId");
+
+                    b.ToTable("usuario_permissao");
+                });
+
             modelBuilder.Entity("CadastroTabelasRelacionadas.Entidades.Produto", b =>
                 {
                     b.HasOne("CadastroTabelasRelacionadas.Entidades.Categoria", "categoria")
@@ -88,6 +126,17 @@ namespace CadastroTabelasRelacionadas.Migrations
                         .IsRequired();
 
                     b.Navigation("categoria");
+                });
+
+            modelBuilder.Entity("CadastroTabelasRelacionadas.Entidades.Usuarios_Permissoes", b =>
+                {
+                    b.HasOne("CadastroTabelasRelacionadas.Entidades.Permissao", "permissao")
+                        .WithMany()
+                        .HasForeignKey("PermissaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("permissao");
                 });
 #pragma warning restore 612, 618
         }

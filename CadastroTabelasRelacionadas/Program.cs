@@ -11,7 +11,7 @@ builder.Services.AddDbContext<Contexto>(options => options.UseMySql(connectionSt
 
 builder.Services.AddAuthentication("CookieAuthentication").AddCookie("CookieAuthentication", options =>
 {
-    options.LoginPath = "/Login/Entrar";
+    options.LoginPath =
     options.AccessDeniedPath = "/Login/Ops";
 });
 
