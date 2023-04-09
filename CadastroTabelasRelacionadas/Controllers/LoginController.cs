@@ -41,7 +41,7 @@ namespace CadastroTabelasRelacionadas.Controllers
             ClaimsPrincipal principal = new ClaimsPrincipal(userIdendity);
             await HttpContext.SignInAsync("CookieAuthentication", principal, new AuthenticationProperties());
 
-            return Redirect("/Entrar");
+            return Redirect("/Entrar/login");
 
 
         }
