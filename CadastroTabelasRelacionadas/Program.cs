@@ -12,8 +12,9 @@ builder.Services.AddDbContext<Contexto>(options => options.UseMySql(connectionSt
 builder.Services.AddAuthentication("CookieAuthentication").AddCookie("CookieAuthentication", options =>
 {
     options.LoginPath = "/login/Entrar";
-    options.AccessDeniedPath = "/Login/Ops";
+    options.AccessDeniedPath = "/Home";
 });
+
 
 builder.Services.AddControllersWithViews();
 
