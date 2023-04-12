@@ -4,6 +4,12 @@ namespace CadastroTabelasRelacionadas.Controllers
 {
     public class ImagensController : Controller
     {
+        private string caminhoServidor;
+
+        public ImagensController(IWebHostEnvironment sistema)
+        {
+            caminhoServidor = sistema.WebRootPath;
+        }
         public IActionResult Upload()
         {
             return View();
