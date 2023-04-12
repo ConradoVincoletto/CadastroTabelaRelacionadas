@@ -17,8 +17,14 @@ namespace CadastroTabelasRelacionadas.Controllers
 
         [HttpPost]
 
-        public IActionResult Upload()
+        public IActionResult Upload(IFormFile foto)
         {
+            string caminhoParaSalvarImagem = caminhoServidor + "//Imagem//";
+
+            if ( ! Directory.Exists(caminhoParaSalvarImagem))
+            {
+                Directory.CreateDirectory(caminhoParaSalvarImagem);
+            }
             return RedirectToAction("Upload");
         }
         
