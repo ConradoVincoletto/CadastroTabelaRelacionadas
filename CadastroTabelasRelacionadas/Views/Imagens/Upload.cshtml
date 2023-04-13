@@ -1,7 +1,37 @@
-﻿<form asp-action="/Imagens/Upload" method="post" enctype="multipart/form-data">
-    <label>Escolha sua imagem para Upload</label>
-    <input type="file" name="foto" />
-    <br />
-    <button type="submit" class="btn btn-danger">Enviar a imagem</button>
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário de Upload de Imagem</title>
+   
+    <style>
+        .success-message {
+            color: green;
+            background-color: #c1e7c3;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulário de Upload de Imagem</h1>
+    <form action="/Imagens/Upload" method="post" enctype="multipart/form-data">
+        <label>Escolha sua imagem para Upload</label>
+        <input type="file" name="foto" />
+        <br />
+        <br />
+        <button type="submit" class="btn btn-danger">Enviar a imagem</button>
+         @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="success-message">
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+        <div class="success-message" id="success-msg" style="display:none;">Imagem enviada com sucesso!</div>
+    </form>
+    <!-- Adicione uma div para exibir a mensagem de sucesso após o envio do formulário -->
+    
+  
+</body>
+</html>
 
-</form>
+
+
