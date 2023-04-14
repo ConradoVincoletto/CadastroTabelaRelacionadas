@@ -23,10 +23,8 @@ namespace CadastroTabelasRelacionadas.Controllers
             {
                 string caminhoParaSalvarImagem = caminhoServidor + "\\imagem\\";
                 string novoNomeParaImagem = Guid.NewGuid().ToString() + "_" + foto.FileName;
-                if (!Directory.Exists(caminhoParaSalvarImagem))
-                {
-                    Directory.CreateDirectory(caminhoParaSalvarImagem);
-                }
+
+                Directory.CreateDirectory(caminhoParaSalvarImagem);
 
                 using (var stream = System.IO.File.Create(caminhoParaSalvarImagem + novoNomeParaImagem))
                 {
